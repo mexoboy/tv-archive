@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+use Phalcon\Cli\Console;
+use Phalcon\Di\FactoryDefault\Cli;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/config/config.php';
+
+$di = new Cli();
+
+require_once APP_PATH . '/config/loader.php';
+require_once APP_PATH . '/config/services.php';
+
+$console = new Console();
+$console->setDI($di);
+
+$arguments = [];
+
+foreach ($argv as $k => $arg) {
+    if ($k === 1) {
+        $arguments["task"] = $arg;
+    } elseif ($k === 2) {
+        $arguments["action"] = $arg;
+    } elseif ($k >= 3) {
+        $arguments["params"][] = $arg;
+    }
+}
+
+try {
+    $console->handle($arguments);
+} catch (\Phalcon\Exception $e) {
+    echo $e->getMessage();
+
+    exit(255);
+}
