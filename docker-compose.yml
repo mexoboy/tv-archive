@@ -14,7 +14,6 @@ services:
     php-fpm:
         container_name: tva-php-fpm
         build: ./docker/php-fpm
-        user: www-data
         depends_on:
             - mysql
         volumes:
@@ -23,7 +22,7 @@ services:
             - /bin/sh
             - -c
         command:
-            - composer install && php-fpm
+            - composer install && ./vendor/bin/phalcon.php migration run && php-fpm
 
         tty: true
 
