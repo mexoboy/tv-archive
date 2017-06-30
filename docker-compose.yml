@@ -1,0 +1,36 @@
+version: '3'
+services:
+    nginx:
+        container_name: tva-nginx
+        build: ./docker/nginx
+        depends_on:
+            - php-fpm
+        ports:
+            - 8080:80
+        volumes:
+            - "./:/var/www/tv-archive"
+            - "./docker/nginx/config/conf.d/default.conf:/etc/nginx/conf.d/default.conf"
+
+    php-fpm:
+        container_name: tva-php-fpm
+        build: ./docker/php-fpm
+        depends_on:
+            - mysql
+        volumes:
+            - "./:/var/www/tv-archive:rw"
+        entrypoint:
+            - /bin/sh
+            - -c
+        command:
+            - composer install && php-fpm
+
+        tty: true
+
+    mysql:
+        container_name: tva-mysql
+        build: ./docker/mysql
+        volumes:
+            - "./docker/mysql/data:/var/lib/mysql"
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
