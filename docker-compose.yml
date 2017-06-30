@@ -14,6 +14,7 @@ services:
     php-fpm:
         container_name: tva-php-fpm
         build: ./docker/php-fpm
+        user: www-data
         depends_on:
             - mysql
         volumes:
@@ -22,7 +23,7 @@ services:
             - /bin/sh
             - -c
         command:
-            - php-fpm
+            - composer install && php-fpm
 
     mysql:
         container_name: tva-mysql
