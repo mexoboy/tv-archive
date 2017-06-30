@@ -1,8 +1,8 @@
 FROM php:7.1-fpm-alpine
 
 # Install dependency packages for phalcon
-RUN apk update
- && apk --no-cache add ffmpeg
+RUN apk update \
+ && apk --no-cache add ffmpeg \
  && apk --no-cache --virtual .tmp-dependency add \
     git \
     autoconf \
