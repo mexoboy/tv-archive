@@ -23,7 +23,7 @@ $config = new \Phalcon\Config([
         'host'     => 'mysql',
         'username' => 'root',
         'password' => '',
-        'dbname'   => 'phalcon',
+        'dbname'   => 'tv-archive',
         'charset'  => 'utf8',
     ],
 
