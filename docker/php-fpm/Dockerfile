@@ -5,6 +5,7 @@ RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/reposito
  && apk update \
  && apk --no-cache add ffmpeg \
  && apk --no-cache --virtual .tmp-dependency add \
+    re2c \
     git \
     autoconf \
     g++ \
