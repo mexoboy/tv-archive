@@ -1,4 +1,5 @@
 .idea
+.phalcon
 vendor
 var
 *.override.php
