@@ -20,7 +20,7 @@ $config = new \Phalcon\Config([
 
     'database' => [
         'adapter'  => 'Mysql',
-        'host'     => 'localhost',
+        'host'     => 'mysql',
         'username' => 'root',
         'password' => '',
         'dbname'   => 'phalcon',
@@ -31,7 +31,7 @@ $config = new \Phalcon\Config([
         'rt' => [
             'baseUrl'       => 'https://www.rt.com',
             'streamUrl'     => 'http://rt-eng-live.hls.adaptive.level3.net/rt/eng/index400.m3u8',
-            'ffmpegOptions' => '',
+            'ffmpegOptions' => '-bsf:a aac_adtstoasc',
         ],
 
         'sc' => [
