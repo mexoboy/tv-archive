@@ -1,7 +1,7 @@
 FROM php:7.1-fpm-alpine
 
 # Install dependency packages for phalcon
-RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
+RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories \
  && apk update \
  && apk --no-cache add ffmpeg \
  && apk --no-cache --virtual .tmp-dependency add \
